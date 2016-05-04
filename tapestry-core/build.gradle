@@ -18,8 +18,8 @@ dependencies {
   compile project(':tapestry-ioc')
   compile project(':tapestry-json')
 
-  provided project(":tapestry-test")
-  provided "javax.servlet:servlet-api:${versions.servletapi}"
+  compile project(":tapestry-test")
+  compile "javax.servlet:servlet-api:${versions.servletapi}"
 
   compile "commons-codec:commons-codec:1.5"
 
@@ -57,7 +57,7 @@ ideaModule.dependsOn generateGrammarSource
 
 def generatedDir = file("$buildDir/generated-sources")
 
-def buildMinusGeneratedDir = (buildDir.listFiles() - generatedDir) as Set<File>
+def buildMinusGeneratedDir = (files {buildDir.listFiles()} - generatedDir) as Set<File>
 
 idea.module.excludeDirs += buildMinusGeneratedDir
 

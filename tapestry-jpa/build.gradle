@@ -13,7 +13,9 @@ dependencies {
 }
 
 repositories {
-  mavenRepo name: "EclipseLink", url: "http://download.eclipse.org/rt/eclipselink/maven.repo/"
+    maven {
+      url "http://download.eclipse.org/rt/eclipselink/maven.repo/"
+  }
 }
 
 test {

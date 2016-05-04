@@ -6,10 +6,13 @@ apply plugin: "sonar"
 apply from: "ssh.gradle"
 apply from: "md5.gradle"
 
+apply plugin: 'idea'
+apply plugin: 'java'
+
 project.ext.versions = [
   // Remember that when generating a release, this should be incremented. Also don"t forget to
   // tag the release in Git.
-  tapestry: "5.3.8",
+  tapestry: "5.3.8-FA-SNAPSHOT",
   jetty: "7.0.0.v20091005",
   tomcat: "6.0.30",
   testng: "5.14.10",
@@ -69,15 +72,7 @@ allprojects {
         mavenCentral()
 
         // All things JBoss/Hibernate
-        mavenRepo name: "JBoss", url: "https://repository.jboss.org/nexus/content/repositories/releases/"
-    }
-
-    idea {
-        project {
-            // Technically, Tapestry is built for JDK 1.5, but we're all using Eclipse or IntelliJ with
-            // JDK 1.6 at this point.
-            jdkName = "1.6"
-        }
+        maven {url "https://repository.jboss.org/nexus/content/repositories/releases/"}
     }
 
     configurations {
@@ -90,7 +85,7 @@ allprojects {
 // Specific to top-level build, not set for subprojects:
 
 configurations {
-    javadoc
+    doc
     published.extendsFrom archives, meta
     if (doSign) {
         published.extendsFrom signatures
@@ -99,7 +94,7 @@ configurations {
 }
 
 dependencies {
-    javadoc project(":tapestry-javadoc")
+    doc project(":tapestry-javadoc")
 
     // From tapestry-ioc:
     binaries "javax.inject:javax.inject:1"
@@ -126,8 +121,8 @@ subprojects {
     apply plugin: "maven"
     apply plugin: "project-report"
 
-    sourceCompatibility = "1.5"
-    targetCompatibility = "1.5"
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
 
     // See http://jira.codehaus.org/browse/GRADLE-784
 
@@ -146,7 +141,7 @@ subprojects {
     }
 
     dependencies {
-        groovy "org.codehaus.groovy:groovy-all:1.8.6"
+        compile group:  "org.codehaus.groovy", name: "groovy-all", version: "1.8.6"
 
         deployerJars "org.apache.maven.wagon:wagon-http-lightweight:1.0-beta-6"
     }
@@ -239,7 +234,7 @@ subprojects.each { project.evaluationDependsOn(it.name) }
 
 task aggregateJavadoc(type: Javadoc) {
 
-    dependsOn configurations.javadoc
+    dependsOn configurations.doc
     group "Documentation"
 
     description "Build the aggregated JavaDocs for all modules"
@@ -255,7 +250,7 @@ task aggregateJavadoc(type: Javadoc) {
         use = true // 'use' seems to be a reserved word for the DSL
         links "http://download.oracle.com/javase/6/docs/api/"
         links "http://download.oracle.com/javaee/6/api/"
-        addStringOption "tagletpath", configurations.javadoc.asPath
+        addStringOption "tagletpath", configurations.doc.asPath
         addStringOption "taglet", "org.apache.tapestry5.javadoc.TapestryDocTaglet"
         exclude "org/apache/tapestry5/internal/plastic/asm/**"
     }
