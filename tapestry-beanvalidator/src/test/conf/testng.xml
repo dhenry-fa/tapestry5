@@ -18,9 +18,9 @@
 <suite name="Tapestry Bean Validator" parallel="false" thread-count="10" annotations="1.5" verbose="2">
     <parameter name="tapestry.integration-webapp" value="src/test/webapp"/>
 
-    <test name="Tapestry Bean Validatior Integration Tests">
+    <!--test name="Tapestry Bean Validatior Integration Tests">
         <packages>
             <package name="org.apache.tapestry5.beanvalidator.integration"/>
         </packages>
-    </test>
+    </test-->
 </suite>

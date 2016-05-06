@@ -49,7 +49,7 @@
     </test>
 
     <!-- We break these out by which of the test applications they apply to. We have a bunch. -->
-    <test name="Core Integration Tests" enabled="true">
+    <!--test name="Core Integration Tests" enabled="true">
         <parameter name="tapestry.web-app-folder" value="src/test/app1"/>
 
         <packages>
@@ -111,5 +111,5 @@
         <packages>
             <package name="org.apache.tapestry5.integration.pagetester"/>
         </packages>
-    </test>
+    </test-->
 </suite>

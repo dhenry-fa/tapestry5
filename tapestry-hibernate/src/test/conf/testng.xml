@@ -22,9 +22,9 @@
             <package name="org.apache.tapestry5.internal.hibernate"/>
         </packages>
     </test>
-    <test name="Tapestry Hibernate Integration Tests">
+    <!--test name="Tapestry Hibernate Integration Tests">
         <packages>
             <package name="org.apache.tapestry5.hibernate.integration"/>
         </packages>
-    </test>
+    </test-->
 </suite>

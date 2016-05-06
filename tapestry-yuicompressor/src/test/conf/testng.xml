@@ -3,9 +3,9 @@
 
   <parameter name="tapestry.web-app-folder" value="src/test/webapp"/>
 
-  <test name="Integration Tests">
+  <!--test name="Integration Tests">
     <packages>
       <package name="org.apache.tapestry5.yuicompressor.itest"/>
     </packages>
-  </test>
+  </test-->
 </suite>

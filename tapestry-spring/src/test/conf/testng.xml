@@ -22,7 +22,7 @@
             <package name="org.apache.tapestry5.internal.spring"/>
         </packages>
     </test>
-    <test name="Tapestry Spring Integration - Standard">
+    <!--test name="Tapestry Spring Integration - Standard">
         <packages>
             <package name="org.apache.tapestry5.spring.integration.standard"/>
         </packages>
@@ -31,5 +31,5 @@
         <packages>
             <package name="org.apache.tapestry5.spring.integration.external"/>
         </packages>
-    </test>
+    </test-->
 </suite>
